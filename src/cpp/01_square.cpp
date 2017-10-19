@@ -1,41 +1,19 @@
 // Copyright (c), Tamas Csala
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "example_init.hpp"
+
 #include <oglwrap/oglwrap.h>
 #include <oglwrap/shapes/rectangle_shape.h>
 
 int main(int argc, char* argv[]) {
-  if (!glfwInit()) {
-    std::terminate();
-  }
+  GLFWwindow *window = InitializeExample();
 
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-
-  GLFWwindow *window = glfwCreateWindow(400, 400, "Example application", nullptr, nullptr);
-
-  if (!window) {
-    std::cerr << "FATAL: Couldn't create a glfw window. Aborting now." << std::endl;
-    glfwTerminate();
-    std::terminate();
-  }
-
-  glfwMakeContextCurrent(window);
-
-  bool success = gladLoadGL();
-  if (!success) {
-    std::cerr << "gladLoadGL failed" << std::endl;
-    std::terminate();
-  }
-
-  gl::Disable(gl::kDepthTest);
   gl::ClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
   // Defines a full screen rectangle (see oglwrap/shapes/rectangle.h)
   gl::RectangleShape rectangle;
 
-  // create a shader program
+  // Create a vertex shader
   gl::ShaderSource vs_source;
   vs_source.set_source(R"""(
     #version 330 core
@@ -48,6 +26,7 @@ int main(int argc, char* argv[]) {
   vs_source.set_source_file("example_shader.vert");
   gl::Shader vs(gl::kVertexShader, vs_source);
 
+  // Create a fragment shader
   gl::ShaderSource fs_source;
   fs_source.set_source(R"""(
     #version 330 core
@@ -59,11 +38,12 @@ int main(int argc, char* argv[]) {
   fs_source.set_source_file("example_shader.frag");
   gl::Shader fs(gl::kFragmentShader, fs_source);
 
+  // Create a shader program
   gl::Program prog(vs, fs);
   gl::Use(prog);
 
   while (!glfwWindowShouldClose(window)) {
-    gl::Clear().Color().Depth();
+    gl::Clear().Color();
 
     rectangle.render();
 
