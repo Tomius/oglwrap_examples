@@ -3,6 +3,7 @@
 #ifndef EXAMPLE_INIT_HPP_
 #define EXAMPLE_INIT_HPP_
 
+#include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
