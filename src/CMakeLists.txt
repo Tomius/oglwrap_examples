@@ -21,18 +21,19 @@ endif()
 
 set (LODEPNG_SOURCE "../deps/lodepng/lodepng.cpp")
 
-file(GLOB EXAMPLE_01_SOURCE "cpp/01_square.cpp" ${LODEPNG_SOURCE})
+file(GLOB EXAMPLE_01_SOURCE "cpp/01_square.cpp" "cpp/oglwrap_example.cpp")
 set (EXAMPLE_01_BINARY_NAME "01_square")
+
+file(GLOB EXAMPLE_02_SOURCE "cpp/02_textured_square.cpp" "cpp/oglwrap_example.cpp" ${LODEPNG_SOURCE})
+set (EXAMPLE_02_BINARY_NAME "02_textured_square")
 
 if (CMAKE_BUILD_TYPE MATCHES "RELEASE")
     set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOGLWRAP_DEBUG=0")
 endif()
 
 add_executable(${EXAMPLE_01_BINARY_NAME} WIN32 ${EXAMPLE_01_SOURCE} ${ICON})
+add_executable(${EXAMPLE_02_BINARY_NAME} WIN32 ${EXAMPLE_02_SOURCE} ${ICON})
 
-# target_include_directories(${EXAMPLE_01_BINARY_NAME} PRIVATE)
-# target_link_libraries(${EXAMPLE_01_BINARY_NAME})
-
-set(WINDOWS_BINARIES ${EXAMPLE_01_BINARY_NAME})
+set(WINDOWS_BINARIES ${EXAMPLE_01_BINARY_NAME} ${EXAMPLE_02_BINARY_NAME})
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 

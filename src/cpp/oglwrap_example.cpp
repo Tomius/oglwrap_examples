@@ -1,13 +1,8 @@
 // Copyright (c), Tamas Csala
 
-#ifndef EXAMPLE_INIT_HPP_
-#define EXAMPLE_INIT_HPP_
+#include "oglwrap_example.hpp"
 
-#include <iostream>
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-GLFWwindow* InitializeExample() {
+OglwrapExample::OglwrapExample() {
   if (!glfwInit()) {
     std::terminate();
   }
@@ -15,25 +10,34 @@ GLFWwindow* InitializeExample() {
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-  GLFWwindow* window = glfwCreateWindow(600, 600, "Example application", nullptr, nullptr);
+  window_ = glfwCreateWindow(600, 600, "Example application", nullptr, nullptr);
 
-  if (!window) {
+  if (!window_) {
     std::cerr << "FATAL: Couldn't create a glfw window. Aborting now." << std::endl;
     glfwTerminate();
     std::terminate();
   }
 
-  glfwMakeContextCurrent(window);
+  glfwMakeContextCurrent(window_);
 
   bool success = gladLoadGL();
   if (!success) {
     std::cerr << "gladLoadGL failed" << std::endl;
     std::terminate();
   }
-
-  return window;
 }
 
-#endif
+OglwrapExample::~OglwrapExample() {
+  glfwTerminate();
+}
 
+void OglwrapExample::RunMainLoop() {
+  while (!glfwWindowShouldClose(window_)) {
+    gl::Clear().Color().Depth();
 
+    Render ();
+
+    glfwSwapBuffers(window_);
+    glfwPollEvents();
+  }
+}
