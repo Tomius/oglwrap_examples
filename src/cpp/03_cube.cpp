@@ -15,9 +15,6 @@ private:
   // A shader program
   gl::Program prog_;
 
-  // A 2D texture
-  gl::Texture2D tex_;
-
 public:
   CubeExample ()
     // Now we need texture coordinates too, not just position
