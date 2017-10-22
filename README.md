@@ -16,3 +16,8 @@ Oglwrap examples
 
 ![03_cube](screenshots/03_cube.jpg)
 
+[04_cylinder.cpp](src/cpp/04_cylinder.cpp)
+--------------------------------------
+
+![04_cylinder](screenshots/04_cylinder.jpg)
+

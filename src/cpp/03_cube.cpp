@@ -9,7 +9,7 @@
 
 class CubeExample : public OglwrapExample {
 private:
-  // Defines a full screen rectangle (see oglwrap/shapes/rectangle.h)
+  // Defines a unit sized cube (see oglwrap/shapes/cube_shape.h)
   gl::CubeShape cube_shape_;
 
   // A shader program
@@ -17,7 +17,6 @@ private:
 
 public:
   CubeExample ()
-    // Now we need texture coordinates too, not just position
     : cube_shape_({gl::CubeShape::kPosition,
                    gl::CubeShape::kNormal})
   {

@@ -6,7 +6,7 @@
 
 class SquareExample : public OglwrapExample {
 private:
-  // Defines a full screen rectangle (see oglwrap/shapes/rectangle.h)
+  // Defines a full screen rectangle (see oglwrap/shapes/rectangle_shape.h)
   gl::RectangleShape rectangle_shape_;
 
   // A shader program
