@@ -101,12 +101,13 @@ public:
       #version 330 core
       in vec3 normal;
 
+      uniform vec3 color;
+
       out vec4 fragColor;
 
       void main() {
         vec3 lightPos = normalize(vec3(0.3, 1, 0.2));
         float diffuseLighting = 0.9*max(dot(lightPos, normalize(normal)), 0.0) + 0.1;
-        vec3 color = vec3(0.1, 0.3, 0.8);
         fragColor = vec4(diffuseLighting * color, 1.0);
       })""");
     fs_source.set_source_file("example_shader.frag");
@@ -140,6 +141,7 @@ protected:
     { // Cylinder
       glm::mat4 model_mat = glm::translate(glm::mat4{1.0f}, glm::vec3{1, 0, 0});
       gl::Uniform<glm::mat4>(prog_, "mvp") = proj_mat * camera_mat * model_mat;
+      gl::Uniform<glm::vec3>(prog_, "color") = glm::vec3{1.0, 0.0, 0.0};
 
       gl::Bind(vao_);
       gl::DrawArrays(gl::PrimType::kTriangleStrip, 0, kSideVertices);
@@ -151,6 +153,7 @@ protected:
     { // Cube
       glm::mat4 model_mat = glm::translate(glm::mat4{1.0f}, glm::vec3{-1, 0, 0});
       gl::Uniform<glm::mat4>(prog_, "mvp") = proj_mat * camera_mat * model_mat;
+      gl::Uniform<glm::vec3>(prog_, "color") = glm::vec3{1.0, 1.0, 0.0};
 
       cube_shape_.render();
     }
