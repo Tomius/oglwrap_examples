@@ -2,7 +2,6 @@
 
 #include "oglwrap_example.hpp"
 
-#include <lodepng.h>
 #include <oglwrap/oglwrap.h>
 #include <oglwrap/shapes/cube_shape.h>
 #include <oglwrap/shapes/sphere_shape.h>
@@ -100,7 +99,7 @@ private:
     glm::mat4 camera_mat = glm::lookAt(2.5f*glm::vec3{sin(t), 1.0f, cos(t)},
                                        glm::vec3{0.0f, 0.0f, 0.0f},
                                        glm::vec3{0.0f, 1.0f, 0.0f});
-    glm::mat4 proj_mat = glm::perspectiveFov<float>(M_PI/3.0, 600, 600, 0.1, 100);
+    glm::mat4 proj_mat = glm::perspectiveFov<float>(M_PI/3.0, kScreenWidth, kScreenHeight, 0.1, 100);
 
     gl::Use(prog_);
 
@@ -124,7 +123,7 @@ private:
       cube_shape_.render();
     }
 
-     { // Floor
+    { // Floor
       glm::mat4 offset_mat = glm::translate(glm::mat4{1.0f}, glm::vec3{0, -0.505, 0});
       glm::mat4 model_mat = glm::scale(offset_mat, glm::vec3{10, 0.1, 10});
       gl::Uniform<glm::mat4>(prog_, "model_mat") = model_mat;
@@ -161,8 +160,8 @@ private:
   }
 
   void SetupRenderProgram() {
-    gl::Shader vs(gl::kVertexShader, GetShaderPath("05_render.vert"));
-    gl::Shader fs(gl::kFragmentShader, GetShaderPath("05_render.frag"));
+    gl::Shader vs(gl::kVertexShader, GetProjectDir() + "/src/glsl/05_render.vert");
+    gl::Shader fs(gl::kFragmentShader, GetProjectDir() + "/src/glsl/05_render.frag");
 
     // Create a shader program
     prog_.attachShader(vs);
@@ -171,8 +170,8 @@ private:
   }
 
   void SetupShadowProgram() {
-    gl::Shader vs(gl::kVertexShader, GetShaderPath("05_shadow.vert"));
-    gl::Shader fs(gl::kFragmentShader, GetShaderPath("05_shadow.frag"));
+    gl::Shader vs(gl::kVertexShader, GetProjectDir() + "/src/glsl/05_shadow.vert");
+    gl::Shader fs(gl::kFragmentShader, GetProjectDir() + "/src/glsl/05_shadow.frag");
 
     // Create a shader program
     shadow_prog_.attachShader(vs);
@@ -207,14 +206,6 @@ private:
   void SetupContextParams() {
     gl::Enable(gl::kDepthTest);
     gl::ClearColor(0.1f, 0.2f, 0.3f, 1.0f);
-  }
-
-  std::string GetShaderPath(const std::string& shader_name) {
-    std::string current_file = __FILE__;
-    size_t found = current_file.find_last_of("/\\");
-    assert (found != std::string::npos);
-    std::string dir = current_file.substr(0,found);
-    return dir + "/../glsl/" + shader_name;
   }
 };
 

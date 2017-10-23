@@ -73,7 +73,7 @@ public:
       gl::Bind(tex_);
       unsigned width, height;
       std::vector<unsigned char> data;
-      std::string path = GetOglwrapLogoPath();
+      std::string path = GetProjectDir() + "/deps/oglwrap/logo.png";
       unsigned error = lodepng::decode(data, width, height, path, LCT_RGBA, 8);
       if (error) {
         std::cerr << "Image decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
@@ -96,15 +96,6 @@ public:
 protected:
   virtual void Render() override {
     rectangle_shape_.render();
-  }
-
-private:
-  std::string GetOglwrapLogoPath() {
-    std::string current_file = __FILE__;
-    size_t found = current_file.find_last_of("/\\");
-    assert (found != std::string::npos);
-    std::string dir = current_file.substr(0,found);
-    return dir + "/../../deps/oglwrap/logo.png";
   }
 };
 

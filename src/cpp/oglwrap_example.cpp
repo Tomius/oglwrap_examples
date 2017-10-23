@@ -42,3 +42,11 @@ void OglwrapExample::RunMainLoop() {
     glfwPollEvents();
   }
 }
+
+std::string OglwrapExample::GetProjectDir() {
+  std::string current_file = __FILE__;
+  size_t found = current_file.find_last_of("/\\");
+  assert (found != std::string::npos);
+  std::string dir = current_file.substr(0, found);
+  return dir + "/../..";
+}

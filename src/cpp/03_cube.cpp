@@ -59,7 +59,7 @@ public:
     prog_.link();
     gl::Use(prog_);
 
-    // Shader plumbing
+    // Bind the attribute locations
     (prog_ | "inPos").bindLocation(gl::CubeShape::kPosition);
     (prog_ | "inNormal").bindLocation(gl::CubeShape::kNormal);
 

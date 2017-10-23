@@ -26,3 +26,10 @@ Oglwrap examples
 
 ![05_shadow](screenshots/05_shadow.jpg)
 
+[06_skybox.cpp](src/cpp/06_skybox.cpp)
+--------------------------------------
+
+![06_skybox](screenshots/06_skybox.jpg)
+
+----------------------
+If you have any problem, notice or feature request, please post in the issues tab or mail me at icyplusplus@gmail.com. Any feedback would be appreciated.

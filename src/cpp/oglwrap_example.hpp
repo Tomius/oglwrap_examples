@@ -3,6 +3,7 @@
 #ifndef OGLWRAP_EXAMPLE_HPP_
 #define OGLWRAP_EXAMPLE_HPP_
 
+#include <string>
 #include <iostream>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -17,11 +18,12 @@ public:
 
 protected:
   GLFWwindow* window_;
+  static constexpr int kScreenWidth = 600;
+  static constexpr int kScreenHeight = 600;
 
   virtual void Render() = 0;
 
-  static constexpr int kScreenWidth = 600;
-  static constexpr int kScreenHeight = 600;
+  std::string GetProjectDir();
 };
 
 
