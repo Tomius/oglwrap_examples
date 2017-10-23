@@ -19,6 +19,9 @@ protected:
   GLFWwindow* window_;
 
   virtual void Render() = 0;
+
+  static constexpr int kScreenWidth = 600;
+  static constexpr int kScreenHeight = 600;
 };
 
 

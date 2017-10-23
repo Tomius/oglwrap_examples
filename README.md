@@ -21,3 +21,8 @@ Oglwrap examples
 
 ![04_cylinder](screenshots/04_cylinder.jpg)
 
+[05_shadow.cpp](src/cpp/05_shadow.cpp)
+--------------------------------------
+
+![05_shadow](screenshots/05_shadow.jpg)
+

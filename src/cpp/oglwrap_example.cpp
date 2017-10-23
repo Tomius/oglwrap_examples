@@ -9,8 +9,9 @@ OglwrapExample::OglwrapExample() {
 
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+  glfwWindowHint(GLFW_RESIZABLE, false);
 
-  window_ = glfwCreateWindow(600, 600, "Example application", nullptr, nullptr);
+  window_ = glfwCreateWindow(kScreenWidth, kScreenHeight, "Example application", nullptr, nullptr);
 
   if (!window_) {
     std::cerr << "FATAL: Couldn't create a glfw window. Aborting now." << std::endl;

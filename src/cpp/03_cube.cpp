@@ -2,7 +2,6 @@
 
 #include "oglwrap_example.hpp"
 
-#include <lodepng.h>
 #include <oglwrap/oglwrap.h>
 #include <oglwrap/shapes/cube_shape.h>
 #include <glm/gtc/matrix_transform.hpp>
@@ -74,7 +73,7 @@ protected:
   virtual void Render() override {
     float t = glfwGetTime();
     glm::mat4 camera_mat = glm::lookAt(1.5f*glm::vec3{sin(t), 1.0f, cos(t)}, glm::vec3{0.0f, 0.0f, 0.0f}, glm::vec3{0.0f, 1.0f, 0.0f});
-    glm::mat4 proj_mat = glm::perspectiveFov<float>(M_PI/3.0, 600, 600, 0.1, 100);
+    glm::mat4 proj_mat = glm::perspectiveFov<float>(M_PI/3.0, kScreenWidth, kScreenHeight, 0.1, 100);
     gl::Uniform<glm::mat4>(prog_, "mvp") = proj_mat * camera_mat;
     cube_shape_.render();
   }
