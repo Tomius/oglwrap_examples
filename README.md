@@ -30,6 +30,3 @@ Oglwrap examples
 --------------------------------------
 
 ![06_skybox](screenshots/06_skybox.jpg)
-
-----------------------
-If you have any problem, notice or feature request, please post in the issues tab or mail me at icyplusplus@gmail.com. Any feedback would be appreciated.
